@@ -138,18 +138,6 @@ function WeaponsService:Reload(player)
 	weapon:Reload()
 end
 
-
---// Private API
-function WeaponsService:SetRestricted(player, isRestricted)
-	if not player then return end
-	self.RestrictedPlayers[player.Name] = isRestricted and true or nil
-end
-
-function WeaponsService:IsRestricted(player)
-	return self.RestrictedPlayers[player.Name] ~= nil
-end
-
---// Utility
 function WeaponsService:GetEquippedWeapon(player)
 	if not player then return end
 	local weapon = self.EquippedWeapons[player.Name]
@@ -157,6 +145,15 @@ function WeaponsService:GetEquippedWeapon(player)
 		warn(`[WeaponsService]: {player.Name} has no weapon equipped.`)
 	end
 	return weapon
+end
+
+function WeaponsService:SetRestricted(player, isRestricted)
+	if not player then return end
+	self.RestrictedPlayers[player.Name] = isRestricted and true or nil
+end
+
+function WeaponsService:IsRestricted(player)
+	return self.RestrictedPlayers[player.Name] ~= nil
 end
 
 --// Destroy all weapons for a player
