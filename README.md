@@ -1,15 +1,9 @@
 # Overview
 
-This repository contains standalone Roblox Lua scripts created to demonstrate:
+This repository contains standalone Roblox Lua scripts that reflect how I structure and write code.
+They are not full game projects. Instead, they focus on demonstrating organization, consistency, and system design in isolation.
 
-* Code structure and organization  
-* Indentation consistency  
-* Naming conventions  
-* Defensive programming practices  
-* Scalable architecture patterns  
-* Clean service/module design  
-
-These scripts are not full game projects. Instead, they are curated examples intended to showcase coding style and maintainability.
+The goal is to showcase clean structure, maintainable patterns, and scalable architecture rather than gameplay features.
 
 # Purpose
 
@@ -18,8 +12,6 @@ The goal of this repository is to provide clear examples of how I:
 * Structure services and modules  
 * Handle state management  
 * Separate concerns properly  
-* Validate input safely  
-* Design multiplayer-safe systems  
 * Organize scalable logic  
 
 Each script is written with readability and long-term maintainability in mind.
@@ -29,9 +21,7 @@ Each script is written with readability and long-term maintainability in mind.
 Although some scripts use Knit for organization, the underlying principles remain the same:
 
 * Clear separation of concerns  
-* Explicit state ownership  
-* Controlled lifecycle management  
 * Server-authoritative validation  
 * Minimal coupling between systems  
 
-The architecture is adaptable and not dependent on any specific framework.
+The patterns shown here can be applied with or without a specific framework.
