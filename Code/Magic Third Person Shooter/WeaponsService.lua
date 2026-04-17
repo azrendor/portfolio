@@ -10,11 +10,11 @@ local WeaponsService = Knit.CreateService{
 	Name = 'WeaponsService',
 
 	Client = {
-		EquipSignal = Knit.CreateSignal(),    -- Fires when a player equips a weapon
-		UnEquipSignal = Knit.CreateSignal(),  -- Fires when a player unequips a weapon
-		FireSignal = Knit.CreateSignal(),     -- Fires when a player shoots
-		ReloadSignal = Knit.CreateSignal(),   -- Fires when a player reloads
-		RecoilSignal = Knit.CreateSignal(),   -- Fires for recoil effects
+		EquipSignal = Knit.CreateSignal(), 
+		UnEquipSignal = Knit.CreateSignal(), 
+		FireSignal = Knit.CreateSignal(),   
+		ReloadSignal = Knit.CreateSignal(),
+		RecoilSignal = Knit.CreateSignal(),
 	},
 
 	WeaponClasses = {},     -- Holds references to all weapon modules, organized by class and weapon name
@@ -103,7 +103,7 @@ function WeaponsService:Fire(player, mousePos, isAiming)
 		return
 	end
 
-	-- Enforce fire rate cooldown
+	-- fire rate cooldown
 	local lastShotTime = self.LastShotTimes[player.Name]
 	local currentTime = tick()
 	local shotCooldown = 1 / roundsPerSecond
@@ -138,14 +138,6 @@ function WeaponsService:Reload(player)
 	weapon:Reload()
 end
 
-function WeaponsService:GetEquippedWeapon(player)
-	if not player then return end
-	local weapon = self.EquippedWeapons[player.Name]
-	if not weapon then
-		warn(`[WeaponsService]: {player.Name} has no weapon equipped.`)
-	end
-	return weapon
-end
 
 function WeaponsService:SetRestricted(player, isRestricted)
 	if not player then return end
@@ -154,6 +146,16 @@ end
 
 function WeaponsService:IsRestricted(player)
 	return self.RestrictedPlayers[player.Name] ~= nil
+end
+
+--// Utility
+function WeaponsService:GetEquippedWeapon(player)
+	if not player then return end
+	local weapon = self.EquippedWeapons[player.Name]
+	if not weapon then
+		warn(`[WeaponsService]: {player.Name} has no weapon equipped.`)
+	end
+	return weapon
 end
 
 --// Destroy all weapons for a player
@@ -176,7 +178,7 @@ function WeaponsService.Client:DestroyWeapons(player)
 end
 
 function WeaponsService.Client:GetWeaponSettings(player, class, weaponName, setting)
-	-- Validate class, weapon, and setting existence
+	-- Integrity checks.
 	if not self.Server.WeaponClasses[class] then
 		warn(`[WeaponsService]: Class:{class} does not exist.`)
 	end
